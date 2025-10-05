@@ -1,82 +1,154 @@
-# Lightweight React Template for KAVIA
+# AI Copilot Frontend
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A beautiful, elegant chat interface for interacting with your AI Copilot. Built with React and styled with the Champagne theme featuring sophisticated cream and pearl highlights.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- **Elegant Champagne Theme**: Sophisticated design with soft pastels, gentle gradients, and refined components
+- **Real-time Chat Interface**: Seamless conversation with the AI assistant
+- **Responsive Design**: Optimized for both desktop and mobile devices
+- **Environment-based Configuration**: Easy backend URL configuration via environment variables
+- **Error Handling**: Graceful error messages and loading states
+- **Auto-scroll**: Automatically scrolls to the latest message
 
 ## Getting Started
 
-In the project directory, you can run:
+### Prerequisites
 
-### `npm start`
+- Node.js (v14 or higher)
+- npm or yarn
+- Running AI Copilot backend (FastAPI server)
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Installation
 
-### `npm test`
-
-Launches the test runner in interactive watch mode.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
+1. Install dependencies:
+```bash
+npm install
 ```
 
-### Components
+2. Configure the backend URL:
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+Create a `.env` file in the root of the frontend directory:
+```bash
+cp .env.example .env
+```
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
+Edit the `.env` file and set your backend URL:
+```
+REACT_APP_BACKEND_URL=http://localhost:3001
+```
+
+**Note:** Replace `http://localhost:3001` with your actual backend URL if different.
+
+### Running the Application
+
+Start the development server:
+```bash
+npm start
+```
+
+The app will open at [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Building for Production
+
+Build the optimized production version:
+```bash
+npm run build
+```
+
+The build artifacts will be in the `build/` folder.
+
+## Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `REACT_APP_BACKEND_URL` | URL of the FastAPI backend server | `http://localhost:3001` |
+
+## Usage
+
+1. Type your message in the input box at the bottom of the screen
+2. Press **Enter** or click the **Send** button to send your message
+3. Use **Shift+Enter** to create a new line without sending
+4. The AI assistant will respond with helpful information
+5. Your conversation history is maintained during the session
+
+## Theme
+
+The application uses the **Champagne** theme with the following color palette:
+
+- **Primary**: `#D97706` (Amber)
+- **Secondary**: `#F3F4F6` (Light Gray)
+- **Success**: `#10B981` (Green)
+- **Error**: `#EF4444` (Red)
+- **Background**: `#FFFBEB` (Cream)
+- **Surface**: `#FFFFFF` (White)
+- **Text**: `#374151` (Dark Gray)
+
+## API Integration
+
+The frontend communicates with the backend via REST API:
+
+- **Endpoint**: `POST /api/chat`
+- **Request Body**:
+  ```json
+  {
+    "message": "User's message",
+    "history": [
+      {"role": "user", "content": "Previous user message"},
+      {"role": "assistant", "content": "Previous AI response"}
+    ]
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "response": "AI assistant's reply"
+  }
+  ```
+
+## Project Structure
+
+```
+ai_copilot_frontend/
+├── public/              # Static files
+├── src/
+│   ├── App.js          # Main chat component
+│   ├── App.css         # Champagne theme styles
+│   ├── api.js          # Axios configuration
+│   ├── index.js        # App entry point
+│   └── index.css       # Global styles
+├── .env.example        # Environment variable template
+├── package.json        # Dependencies and scripts
+└── README.md          # This file
+```
+
+## Troubleshooting
+
+### Cannot connect to backend
+
+- Verify the backend server is running
+- Check that `REACT_APP_BACKEND_URL` in `.env` matches your backend URL
+- Ensure CORS is properly configured on the backend
+
+### Messages not sending
+
+- Check browser console for error messages
+- Verify the backend `/api/chat` endpoint is working
+- Ensure you have a valid Gemini API key configured in the backend
+
+## Testing
+
+Run the test suite:
+```bash
+npm test
+```
 
 ## Learn More
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [React Documentation](https://reactjs.org/)
+- [Create React App Documentation](https://create-react-app.dev/)
+- [Axios Documentation](https://axios-http.com/)
 
-### Code Splitting
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is part of the AI Copilot application.
